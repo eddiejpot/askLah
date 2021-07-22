@@ -2,7 +2,7 @@
 
 ## ❓ What:
 
-A live Q&A platform for virtual and in-person events and meetings. (Mini Pigeonhole Clone)
+A live Q&A platform for virtual and in-person events and meetings. A simplied version of [Pigeonhole ](https://www.google.com)
 
 On a more technical level, this project is/was for me to practice and learn more about the following.
 
