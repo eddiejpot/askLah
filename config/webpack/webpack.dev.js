@@ -8,6 +8,8 @@ const common = require('./webpack.common.js');
 module.exports = merge(common, {
   entry: {
     main: ['webpack-hot-middleware/client', './src/index.jsx'],
+    // main: ['webpack-hot-middleware/client', '../../src/index.jsx'],
+    // main: ['webpack-hot-middleware/client', path.resolve('/src', 'index.jsx')],
   },
   mode: 'development',
   devtool: 'inline-source-map',
@@ -39,7 +41,8 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       // name this file main, so that it does not get automatically requested as a static file
       filename: './main.html',
-      template: path.resolve(__dirname, '..', 'src', 'index.html'),
+      // template: path.resolve(__dirname, '../src/index.html'),
+      template: path.resolve('/src', 'index.html'),
     }),
 
   ].filter(Boolean),

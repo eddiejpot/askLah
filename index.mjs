@@ -34,7 +34,7 @@ if (env === 'development') {
   const { default: webpack } = await import('webpack')
   const { default: webpackDevMiddleware } =  await import('webpack-dev-middleware');
   const { default: webpackHotMiddleware } = await import('webpack-hot-middleware');
-  const { default: webpackConfig } = await import('./webpack_conf/webpack.dev.js');
+  const { default: webpackConfig } = await import('./config/webpack/webpack.dev.js');
 
   const compiler = webpack(webpackConfig);
 
