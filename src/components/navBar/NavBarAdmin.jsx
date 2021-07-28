@@ -38,12 +38,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavBar({
+export default function NavBarAdmin({
   isUserLoggedIn, logInWithGoogle, signUpWithGoogle, logOut,
 }) {
-  console.log('in nav');
-  console.log(isUserLoggedIn);
-
   const classes = useStyles();
 
   const contentOnNavBar = () => {

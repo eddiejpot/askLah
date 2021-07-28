@@ -12,10 +12,9 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
 /* ========= Import react components ========== */
-import NavBar from './components/navBar/NavBar.jsx';
+import NavBarAdmin from './components/navBar/NavBarAdmin.jsx';
 import LandingPage from './components/landingPage/LandingPage.jsx';
 import AdminDashboard from './components/adminDashboard/AdminDashboard.jsx';
-import SessionTemplate from './components/session/participant/SessionTemplate.jsx';
 
 /* ========= Import util modules ========== */
 import { getCookie, createCookie, deleteCookie } from '../utils/cookie.mjs';
@@ -140,16 +139,14 @@ export default function App() {
       { isUserLoggedIn
         ? (
           <>
-            <NavBar logOut={logOut} isUserLoggedIn={isUserLoggedIn} />
+            <NavBarAdmin logOut={logOut} isUserLoggedIn={isUserLoggedIn} />
             <AdminDashboard />
-            <SessionTemplate sessionId="USHIW123" />
           </>
         )
         : (
           <>
-            <NavBar logInWithGoogle={logInWithGoogle} signUpWithGoogle={signUpWithGoogle} isUserLoggedIn={isUserLoggedIn} />
+            <NavBarAdmin logInWithGoogle={logInWithGoogle} signUpWithGoogle={signUpWithGoogle} isUserLoggedIn={isUserLoggedIn} />
             <LandingPage />
-            <SessionTemplate sessionId="USHIW123" />
           </>
         )}
     </div>

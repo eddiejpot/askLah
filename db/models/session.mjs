@@ -28,10 +28,7 @@ export default function initSessionModel(sequelize, DataTypes) {
       date: {
         type: DataTypes.DATE,
       },
-      route_url: {
-        type: DataTypes.STRING,
-      },
-      firebase_db_url: {
+      sessionId: {
         type: DataTypes.STRING,
       },
       createdAt: {

@@ -42,10 +42,7 @@ module.exports = {
       date: {
         type: Sequelize.STRING,
       },
-      route_url: {
-        type: Sequelize.STRING,
-      },
-      firebase_db_url: {
+      session_id: {
         type: Sequelize.STRING,
       },
       user_id: {
