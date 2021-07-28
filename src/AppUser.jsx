@@ -2,8 +2,12 @@
 /* ===================================== Import Modules ============= */
 /* ================================================================== */
 
-/* ========= Import firebase modules ========== */
-// import { useAuthState } from 'react-firebase-hooks/auth';
+/* ========= Import firebase auth modules ========== */
+// Firebase App (the core Firebase SDK) is always required and must be listed first
+import firebase from 'firebase/app';
+// Add the Firebase products that you want to use
+import 'firebase/auth';
+import 'firebase/firestore';
 
 /* ========= Import axios========== */
 import axios from 'axios';
@@ -15,13 +19,30 @@ import React, { useState, useEffect } from 'react';
 import NavBar from './components/navBar/NavBar.jsx';
 import LandingPage from './components/landingPage/LandingPage.jsx';
 import AdminDashboard from './components/adminDashboard/AdminDashboard.jsx';
-import SessionTemplate from './components/session/participant/SessionTemplate.jsx';
 
 /* ========= Import util modules ========== */
-import { getCookie, createCookie, deleteCookie } from '../utils/cookie.mjs';
+import { createCookie, deleteCookie } from '../utils/cookie.mjs';
 
-/* ======== Import Firebase modules from config ============ */
-import { auth, firebaseRef, provider } from './services/firebase/config.mjs';
+/* ================================================================== */
+/* ================================== Firebase Auth Init ============ */
+/* ================================================================== */
+const firebaseConfig = {
+  apiKey: 'AIzaSyAuq_BAfdVK7YDXhYgVWfQnNnWa4gnQcQY',
+  authDomain: 'ask-lah.firebaseapp.com',
+  projectId: 'ask-lah',
+  storageBucket: 'ask-lah.appspot.com',
+  messagingSenderId: '364927180279',
+  appId: '1:364927180279:web:c455dccacb278e19c8e2f2',
+};
+// Initialize Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
+
+// Initialize Google Auth Proider
+const provider = new firebase.auth.GoogleAuthProvider();
 
 /* ================================================================== */
 /* ============================================== RENDER ============ */
@@ -29,18 +50,17 @@ import { auth, firebaseRef, provider } from './services/firebase/config.mjs';
 
 export default function App() {
   // Component states
-  // check if there is a user that is logged in
   const [userData, setUserData] = useState(null);
-  // user actions are: logIn, signUp, logOut, null
+  // user actions are: logIn, signUp, null
   const [userAction, setUserAction] = useState(null);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   // Firebase Google Auth
   const logInWithGoogle = async () => {
     try {
-      console.log('loggin in with google auth');
+      console.log('loggin in');
       setUserAction(() => 'logIn');
-      await auth.signInWithPopup(provider);
+      await firebase.auth().signInWithPopup(provider);
     } catch (error) {
       console.error('error logging in', error);
     }
@@ -48,9 +68,9 @@ export default function App() {
 
   const signUpWithGoogle = async () => {
     try {
-      console.log('signing up with google auth');
+      console.log('signing up');
       setUserAction(() => 'signUp');
-      await auth.signInWithPopup(provider);
+      await firebase.auth().signInWithPopup(provider);
     } catch (error) {
       console.error('error signing up', error);
     }
@@ -58,10 +78,8 @@ export default function App() {
 
   const logOut = async () => {
     try {
-      console.log('logging out of google auth');
-      await auth.signOut();
-      setUserAction(() => 'logOut');
-      setUserData(() => 'loggingOut');
+      console.log('logging out');
+      await firebase.auth().signOut();
     } catch (error) {
       console.error('error logging out', error);
     }
@@ -70,7 +88,7 @@ export default function App() {
   // Fire base real time listener to check if user logged in
   // if auth passes we'll return user data else return null
   try {
-    auth.onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       setUserData(user);
     });
   } catch (error) {
@@ -78,15 +96,7 @@ export default function App() {
   }
 
   // Lifecycle
-  // On page load
-  // 1. Check if there is loggedIn cookie
-  //    If there is then load AdminDashboard Component
-  //    Else give option to log in / sign up
   useEffect(async () => {
-    if (getCookie('userId')) {
-      setIsUserLoggedIn(() => true);
-    }
-    console.log(`USERACTION---->${userAction}`);
     // --- If user passed Google Auth and is is logging in
     if (userData != null && userAction === 'logIn') {
       console.log('user passed google Auth and is logging in');
@@ -100,6 +110,7 @@ export default function App() {
         // send browser cookies
         createCookie('userId', loggedInUserData.id);
         createCookie('userName', loggedInUserData.displayName);
+        console.log('welcome back!');
         // update component state
         setIsUserLoggedIn(() => true);
       } else {
@@ -108,9 +119,9 @@ export default function App() {
         setUserAction(() => null);
         // !!!! TODO: ASK USER TO SIGN UP
       }
-    }
+
     // --- If user passed Google Auth and is is signing up
-    if (userData != null && userAction === 'signUp') {
+    } else if (userData != null && userAction === 'signUp') {
       console.log('user passed google Auth and is signing up');
       const { displayName, email } = userData;
       // create new user in DB
@@ -120,9 +131,9 @@ export default function App() {
       createCookie('userName', newUser.displayName);
       // update component state
       setIsUserLoggedIn(() => true);
-    }
+
     // --- If user is logged out / default state
-    if (userAction === 'logOut') {
+    } else {
       console.log('user is logged out');
       // delete cookies
       deleteCookie('userId');
@@ -130,7 +141,6 @@ export default function App() {
       // update component state
       setIsUserLoggedIn(() => false);
       setUserAction(() => null);
-      setUserData(() => null);
     }
   }, [userData]);
   // [userData, isUserLoggedIn, userAction]
@@ -142,14 +152,12 @@ export default function App() {
           <>
             <NavBar logOut={logOut} isUserLoggedIn={isUserLoggedIn} />
             <AdminDashboard />
-            <SessionTemplate sessionId="USHIW123" />
           </>
         )
         : (
           <>
             <NavBar logInWithGoogle={logInWithGoogle} signUpWithGoogle={signUpWithGoogle} isUserLoggedIn={isUserLoggedIn} />
             <LandingPage />
-            <SessionTemplate sessionId="USHIW123" />
           </>
         )}
     </div>

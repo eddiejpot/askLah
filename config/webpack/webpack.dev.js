@@ -44,6 +44,5 @@ module.exports = merge(common, {
       // template: path.resolve(__dirname, '../src/index.html'),
       template: path.resolve('/src', 'index.html'),
     }),
-
   ].filter(Boolean),
 });

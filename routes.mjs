@@ -5,8 +5,14 @@ import initUsersController from './controllers/user.mjs';
 export default function routes(app) {
   const usersController = initUsersController(db);
 
-  // special JS page. Include the webpack index.html file
+  // homepage
   app.get('/', (request, response) => {
+    response.sendFile(resolve('dist', 'main.html'));
+  });
+
+  // sessions
+  app.get('/session/:id', (request, response) => {
+    console.log('HERE');
     response.sendFile(resolve('dist', 'main.html'));
   });
 

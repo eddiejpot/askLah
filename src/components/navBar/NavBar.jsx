@@ -4,7 +4,6 @@
 
 /* ========= Import axios========== */
 import axios from 'axios';
-import { darkolivegreen } from 'color-name';
 
 /* ========= Import react modules ========== */
 import React, { useState, useEffect } from 'react';
@@ -85,57 +84,3 @@ export default function NavBar({
     </div>
   );
 }
-
-//   export default function NavBar({
-//   isUserLoggedIn, logInWithGoogle, signUpWithGoogle, logOut,
-// }) {
-//   console.log('in nav');
-//   console.log(isUserLoggedIn);
-
-//   const classes = useStyles();
-
-//   const contentOnNavBar = () => {
-//     // If user is logged in
-//     if (isUserLoggedIn) {
-//       return (
-//         <>
-//           <h6>
-//             Hi
-//             {getCookie('userName')}
-//             !
-//           </h6>
-//           <a className="navbar-brand" href="/">Navbar</a>
-//           <button type="button" className="logOut-button" onClick={logOut}>
-//             <span> Log Out</span>
-//           </button>
-//         </>
-//       );
-//     }
-//     // if user is not logged in
-//     return (
-//       <>
-//         <a className="navbar-brand" href="/">Navbar</a>
-//         <button type="button" className="login-provider-button" onClick={logInWithGoogle}>
-//           <img src="https://img.icons8.com/ios-filled/50/000000/google-logo.png" alt="google icon" />
-//           <span> Log in with google</span>
-//         </button>
-
-//         <button type="button" className="login-provider-button" onClick={signUpWithGoogle}>
-//           <img src="https://img.icons8.com/ios-filled/50/000000/google-logo.png" alt="google icon" />
-//           <span> Sign Up with google</span>
-//         </button>
-//       </>
-//     );
-//   };
-
-//   // final return
-//   return (
-//     <>
-//       <nav className="navbar navbar-light bg-light">
-//         <div className="container-fluid">
-//           {contentOnNavBar()}
-//         </div>
-//       </nav>
-//     </>
-//   );
-// }

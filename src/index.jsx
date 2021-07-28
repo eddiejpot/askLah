@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import './styles.scss';
-// CSS FRAMEWORK
 // React Components
 import App from './App.jsx';
 
