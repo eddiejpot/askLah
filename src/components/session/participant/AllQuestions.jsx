@@ -19,36 +19,23 @@ import { db, firebaseRef } from '../../../services/firebase/config.mjs';
 /* ================================================================== */
 
 export default function AllQuestions({ questions }) {
-  // const fireBaseCollection = db.collection(sessionId);
-
-  // const [questions, setQuestions] = useState([]);
-
-  // const updateQuestions = (snaps) => {
-  //   console.log('LISTENER: AH YES DB UPDATED!');
-  //   const newQuestions = [];
-
-  //   data.forEach((doc) => {
-  //     const question = doc.data();
-  //     newQuestions.push(question);
-  //   });
-  //   console.log('UPDATING STATE IN REACT');
-  //   setQuestions(newQuestions);
-  // };
-
-  // // Realtime Listener for updates to DB
-  // fireBaseCollection
-  //   .orderBy('createdAt')
-  //   .onSnapshot((snaps) => {
-  //     // Loop through documents in database
-  //     updateQuestions(snaps);
-  //   });
-
   // final return
   return (
     <>
       <ul>
         {
-        questions.map((question) => <li>{question.text}</li>)
+        questions.map((question) => (
+          <div key={question.id}>
+            <p>
+              Asked by:
+              {question.whoAsked}
+              <span>
+                Question:
+                {question.text}
+              </span>
+            </p>
+          </div>
+        ))
         }
       </ul>
     </>

@@ -20,29 +20,13 @@ import NavBarParticipant from '../../navBar/NavBarParticipant.jsx';
 /* ============================================== RENDER ============ */
 /* ================================================================== */
 
-export default function Lobby({ sessionId, setComponentToRender }) {
-  // Component states
-  const [sessionDetails, setSessionDetails] = useState(false);
-
-  // Lifecycle
-  // On page load
-  // 1. Check DB for session details
-  useEffect(async () => {
-    const { data: getSessionDetails } = await axios.get('/api/sessions',
-      {
-        params: {
-          sessionId,
-        },
-      });
-    setSessionDetails(() => getSessionDetails);
-  }, []);
-
+export default function Lobby({ sessionId, setComponentToRender, sessionDetails }) {
   return (
     <>
       {sessionDetails
         ? (
           <>
-            <NavBarParticipant participantName="Anonymus" sessionName={sessionDetails.title} />
+            <NavBarParticipant sessionName={sessionDetails.title} />
             <p>{sessionDetails.speaker}</p>
             <p>{sessionDetails.date}</p>
             <p>{sessionDetails.description}</p>

@@ -16,11 +16,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import FormDialog from '../modals/FormDialog.jsx';
 
 /* ========= Import util modules ========== */
-import { getCookie } from '../../../utils/cookie.mjs';
+import { getCookie, createCookie, deleteCookie } from '../../../utils/cookie.mjs';
 
 /* ================================================================== */
 /* ============================================== RENDER ============ */
@@ -38,42 +37,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavBarParticipant({ participantName, sessionName }) {
+export default function NavBarParticipant({ sessionName, userName, setUserName }) {
   const classes = useStyles();
-
-  const editName = () => {
-
-  };
-
-  const contentOnNavBar = () => {
-    // If participant provides name
-    if (participantName) {
-      return (
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            {sessionName}
-          </Typography>
-          <Button color="inherit" onClick={editName}>{participantName}</Button>
-        </Toolbar>
-
-      );
-    }
-    // If participant does not provide name
-    return (
-      <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          {sessionName}
-        </Typography>
-        <Button color="inherit" onClick={editName}>Anonymous</Button>
-      </Toolbar>
-    );
-  };
 
   // final return
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        {contentOnNavBar()}
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            {sessionName}
+          </Typography>
+          <FormDialog userName={userName} setUserName={setUserName} />
+        </Toolbar>
       </AppBar>
     </div>
   );

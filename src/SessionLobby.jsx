@@ -2,8 +2,11 @@
 /* ===================================== Import Modules ============= */
 /* ================================================================== */
 
+/* ========= Import axios========== */
+import axios from 'axios';
+
 /* ========= Import react modules ========== */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 /* ========= Import react components ========== */
 import Lobby from './components/session/participant/Lobby.jsx';
@@ -23,6 +26,7 @@ export default function App({ windowUrl }) {
   // Component states
   // components to render are sessionNotFound, lobby, session, loading
   const [componentToRender, setComponentToRender] = useState('loading');
+  const [sessionDetails, setSessionDetails] = useState({});
 
   // Lifecycle
   // On page load
@@ -36,6 +40,14 @@ export default function App({ windowUrl }) {
     if (querySnapshot.empty) {
       setComponentToRender(() => 'sessionNotFound');
     } else {
+      // Check DB for session details
+      const { data: getSessionDetails } = await axios.get('/api/sessions',
+        {
+          params: {
+            sessionId,
+          },
+        });
+      setSessionDetails(() => getSessionDetails);
       setComponentToRender(() => 'lobby');
     }
   }, []);
@@ -47,10 +59,10 @@ export default function App({ windowUrl }) {
         output = (<h1>loading</h1>);
         break;
       case 'lobby':
-        output = (<Lobby sessionId={sessionId} setComponentToRender={setComponentToRender} />);
+        output = (<Lobby sessionId={sessionId} sessionDetails={sessionDetails} setComponentToRender={setComponentToRender} />);
         break;
       case 'session':
-        output = (<SessionTemplate sessionId={sessionId} />);
+        output = (<SessionTemplate sessionId={sessionId} sessionDetails={sessionDetails} />);
         break;
       default:
         // sessionNotFound
