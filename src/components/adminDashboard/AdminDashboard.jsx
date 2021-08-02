@@ -16,6 +16,7 @@ import Box from '@material-ui/core/Box'; // MUI Module
 import { getCookie } from '../../../utils/cookie.mjs'; // Util Module
 import CreateNewSession from '../modals/CreateNewSession.jsx'; // React Component
 import SessionCard from '../cards/SessionCard.jsx'; // React Component
+import AdminSessionTemplate from '../session/admin/AdminSessionTemplate.jsx'; // React Component
 
 /* ================================================================== */
 /* ========================================================= STYLES = */
@@ -84,7 +85,7 @@ export default function AdminDashboard() {
           <Grid container className={classes.content}>
             <Typography variant="h4" gutterBottom>
               <Box fontWeight="fontWeightBold" m={1}>
-                All Sessions
+                Dashboard
               </Box>
             </Typography>
           </Grid>
@@ -152,11 +153,13 @@ export default function AdminDashboard() {
       );
     } else {
       // render admin session
+      renderComponent = (
+        <AdminSessionTemplate sessionId={componentToRender} setComponentToRender={setComponentToRender} userSessions={userSessions} setUserSessions={setUserSessions} />
+      );
     }
     return renderComponent;
   };
 
-  console.log(componentToRender);
   return (
     <div className={classes.root}>
       <CssBaseline />

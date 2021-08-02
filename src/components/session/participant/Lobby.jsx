@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     // minHeight: '100vh',
     marginTop: theme.spacing(12),
-    // minWidth: '100vh',
+    minWidth: '100vh',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',

@@ -12,7 +12,7 @@ export default function routes(app) {
     response.sendFile(resolve('dist', 'main.html'));
   });
 
-  // sessions
+  // session
   app.get('/session/:id', (request, response) => {
     response.sendFile(resolve('dist', 'main.html'));
   });
@@ -22,5 +22,6 @@ export default function routes(app) {
   app.post('/api/adduser', usersController.create);
   app.get('/api/sessions', sessionsController.search);
   app.post('/api/addsession', sessionsController.create);
+  app.put('/api/editsession', sessionsController.edit);
   app.get('/api/allsessions', sessionsController.index);
 }

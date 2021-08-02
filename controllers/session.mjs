@@ -29,7 +29,7 @@ export default function initSessionsController(db) {
     }
   };
 
-  // find all sessions that below to user
+  // find all sessions that belong to user
   const index = async (request, response) => {
     const { userId } = request.query;
     try {
@@ -67,11 +67,46 @@ export default function initSessionsController(db) {
     }
   };
 
+  // edit session and return all of user's sessions
+  const edit = async (request, response) => {
+    const {
+      id: chosenId, title, speaker, description, date, userId,
+    } = request.body;
+    try {
+      const updatedSession = await db.Session.update(
+        {
+          title,
+          speaker,
+          description,
+          date,
+        },
+        {
+          where: { id: chosenId },
+          returning: true,
+          raw: true,
+        },
+
+      );
+
+      // find all sessions that belong to user
+      const allSessions = await db.Session.findAll({
+        where: {
+          userId,
+        },
+      });
+      // send back all sessions
+      response.send({ allSessions, updatedSession: updatedSession[1][0] });
+    } catch (error) {
+      console.error('!Error in editing session', error);
+    }
+  };
+
   // return all functions we define in an object
   // refer to the routes file above to see this used
   return {
     search,
     index,
     create,
+    edit,
   };
 }

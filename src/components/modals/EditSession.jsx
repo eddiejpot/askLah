@@ -3,6 +3,7 @@
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
 
+import moment from 'moment'; // Moment Module
 import axios from 'axios'; // Axios Module
 import { v4 as uuidv4 } from 'uuid'; // uuid Module
 import React, { useState, useRef } from 'react'; // React Module
@@ -15,8 +16,8 @@ import DialogActions from '@material-ui/core/DialogActions'; // MUI Module
 import DialogContent from '@material-ui/core/DialogContent'; // MUI Module
 import DialogContentText from '@material-ui/core/DialogContentText'; // MUI Module
 import DialogTitle from '@material-ui/core/DialogTitle'; // MUI Module
-import AddOutlinedIcon from '@material-ui/icons/AddOutlined'; // MUI Module
 import { makeStyles } from '@material-ui/core/styles'; // MUI Module
+import EditIcon from '@material-ui/icons/Edit'; // MUI Module
 import { db, firebaseRef } from '../../services/firebase/config.mjs'; // Firebase Module
 import { getCookie } from '../../../utils/cookie.mjs'; // Util Module
 
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 /* =========================================================== MAIN = */
 /* ================================================================== */
 
-export default function CreateNewSession({ userSessions, setUserSessions }) {
+export default function EditSession({ sessionDetails, setSessionDetails, setUserSessions }) {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -53,28 +54,22 @@ export default function CreateNewSession({ userSessions, setUserSessions }) {
     setOpen(false);
   };
 
-  const handleCreate = async () => {
-    // Generate uuid
-    const sessionId = uuidv4();
+  const handleEdit = async () => {
     //  data to send
-    const newSessionData = {
+    const editedSessionData = {
       userId: getCookie('userId'),
+      id: sessionDetails.id,
       title: sessionName.current,
       speaker: speakerName.current,
       description: sessionDescription.current,
       date: eventDate.current,
-      sessionId,
+      // sessionId, id, userId stays the same
     };
-    // Create new session in sql
-    const { data: newSessionDetails } = await axios.post('/api/addsession', newSessionData);
-    // Create new colletion in firebase
-    await db.collection(sessionId).doc('dummy').set({
-      dummyData: 'dummy',
-    });
-    // update sessions
-    console.log(userSessions);
-    console.log(newSessionDetails);
-    setUserSessions(() => [...userSessions, newSessionDetails]);
+    // edit session in sql
+    const { data } = await axios.put('/api/editsession', editedSessionData);
+    console.log(data);
+    setSessionDetails(() => data.updatedSession);
+    setUserSessions(() => data.allSessions);
     setOpen(false);
   };
 
@@ -86,21 +81,20 @@ export default function CreateNewSession({ userSessions, setUserSessions }) {
         color="primary"
         size="large"
         className={classes.button}
-        startIcon={<AddOutlinedIcon />}
+        startIcon={<EditIcon />}
         onClick={handleClickOpen}
+        size="medium"
       >
-        Create a new session
+        Edit Session Details
       </Button>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Create a new session
-      </Button> */}
+
       <Dialog
         open={open}
         onClose={handleClose}
         fullWidth
         maxWidth="md"
       >
-        <DialogTitle>Create a new Session</DialogTitle>
+        <DialogTitle>Edit Session</DialogTitle>
         <DialogContent className={classes.main}>
           <Grid container spacing={0}>
             <Typography variant="subtitle2" display="block" gutterBottom>
@@ -113,6 +107,7 @@ export default function CreateNewSession({ userSessions, setUserSessions }) {
               label=""
               fullWidth
               variant="outlined"
+              defaultValue={sessionDetails.title}
               onChange={(event) => sessionName.current = event.target.value}
             />
           </Grid>
@@ -130,6 +125,7 @@ export default function CreateNewSession({ userSessions, setUserSessions }) {
                 label=""
                 fullWidth
                 variant="outlined"
+                defaultValue={sessionDetails.speaker}
                 onChange={(event) => speakerName.current = event.target.value}
               />
             </Grid>
@@ -145,6 +141,7 @@ export default function CreateNewSession({ userSessions, setUserSessions }) {
                 type="date"
                 fullWidth
                 variant="outlined"
+                defaultValue={moment(sessionDetails.date).format('YYYY-MM-DD')}
                 onChange={(event) => eventDate.current = event.target.value}
               />
             </Grid>
@@ -164,18 +161,15 @@ export default function CreateNewSession({ userSessions, setUserSessions }) {
               label=""
               fullWidth
               variant="outlined"
+              defaultValue={sessionDetails.description}
               onChange={(event) => sessionDescription.current = event.target.value}
             />
           </Grid>
 
-          <DialogContentText margin>
-            Each session has a unique link that will be generated upon creation
-          </DialogContentText>
-
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleCreate}>Create Session</Button>
+          <Button onClick={handleEdit}>Confirm Changes</Button>
         </DialogActions>
       </Dialog>
     </div>

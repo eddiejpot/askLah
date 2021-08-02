@@ -14,7 +14,7 @@ import { db, firebaseRef } from '../../../services/firebase/config.mjs'; // Fire
 import NavBarParticipant from '../../navBar/NavBarParticipant.jsx'; // React Component
 import AllQuestions from './AllQuestions.jsx'; // React Component
 import QuestionInput from './QuestionInput.jsx'; // React Component
-import ScrollableTabsButtonAuto from '../../tabs/ScrollableTabsButtonAuto.jsx';
+import ScrollableTabsButtonAuto from '../../tabs/ScrollableTabsButtonAuto.jsx'; // React Component
 import { getCookie } from '../../../../utils/cookie.mjs'; // Util Module
 
 /* ================================================================== */
@@ -112,8 +112,6 @@ export default function SessionTemplate({
             renderNotAnswered={<AllQuestions questions={splitQuestions(questions).unAnswered} sessionId={sessionId} />}
             renderAnswered={<AllQuestions questions={splitQuestions(questions).answered} sessionId={sessionId} />}
           />
-          {/* <AllQuestions questions={questions} sessionId={sessionId} /> */}
-
         </Grid>
       </Container>
     </div>

@@ -62,7 +62,7 @@ export default function QuestionCard({ question, sessionId }) {
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   const classes = useStyles();
-  console.log('asdasd');
+
   const handleVoteClick = (event) => {
     const newVoteValue = question.vote + 1;
     // update vote in db

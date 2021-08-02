@@ -19,6 +19,7 @@ import Container from '@material-ui/core/Container'; // MUI Module
 import CssBaseline from '@material-ui/core/CssBaseline'; // MUI Module
 import Tooltip from '@material-ui/core/Tooltip'; // MUI Module
 import Snackbar from '@material-ui/core/Snackbar'; // MUI Module
+import CopyClipboardButton from '../buttons/CopyClipboardButton.jsx'; // React Component
 
 /* ================================================================== */
 /* ========================================================= STYLES = */
@@ -68,8 +69,8 @@ export default function SessionCard({ sessionDetails, setComponentToRender }) {
   // click event
   const handleClick = () => {
     console.log(sessionDetails.sessionId);
-    setComponentToRender(sessionDetails.sessionId);
     // render admin session
+    setComponentToRender(sessionDetails.sessionId);
   };
 
   /* ======================================================== RENDER = */
@@ -99,12 +100,11 @@ export default function SessionCard({ sessionDetails, setComponentToRender }) {
 
           <Grid item xs className={classes.grid}>
             <Typography variant="h6">
-
-              <CopyToClipboard text={`${window.location.href
-              }session/${sessionDetails.sessionId}`}
-              >
-                <button>copy link</button>
-              </CopyToClipboard>
+              <CopyClipboardButton
+                text={`${window.location.href
+                }session/${sessionDetails.sessionId}`}
+                buttonSize="small"
+              />
             </Typography>
           </Grid>
         </Grid>
