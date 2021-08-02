@@ -16,8 +16,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
 /* ========= Import util modules ========== */
 import { getCookie } from '../../../utils/cookie.mjs';
@@ -35,6 +33,16 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+  },
+  adminTitle: {
+    margin: '1rem',
+    border: '1px solid ',
+    borderRadius: '0.2rem',
+    padding: '0.25rem',
+  },
+  nav: {
+    // backgroundColor: '#f7f4e4',
+    // color: '#363537',
   },
 }));
 
@@ -54,6 +62,9 @@ export default function NavBarAdmin({
             {getCookie('userName')}
             {' '}
             !
+            <Typography variant="overline" className={classes.adminTitle}>
+              ADMIN
+            </Typography>
           </Typography>
           <Button color="inherit" onClick={logOut}>Log Out</Button>
         </Toolbar>
@@ -66,8 +77,9 @@ export default function NavBarAdmin({
         <Typography variant="h6" className={classes.title}>
           AskLah
         </Typography>
-        <Button color="inherit" onClick={logInWithGoogle}>Log in with google</Button>
-        <Button color="inherit" onClick={signUpWithGoogle}>Sign Up with google</Button>
+        <img src="/google_icon.ico" alt="google-icon" width="20" height="20" />
+        <Button color="inherit" onClick={logInWithGoogle}>Log in</Button>
+        <Button color="inherit" onClick={signUpWithGoogle}>Sign Up</Button>
       </Toolbar>
     );
   };
@@ -75,7 +87,7 @@ export default function NavBarAdmin({
   // final return
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="absolute" className={classes.nav}>
         {contentOnNavBar()}
       </AppBar>
     </div>

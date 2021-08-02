@@ -9,7 +9,7 @@ import { db, firebaseRef } from '../../../services/firebase/config.mjs';
 /* ========= Import react modules ========== */
 
 /* ========= Import react components ========== */
-
+import QuestionCard from '../../cards/QuestionCard.jsx';
 /* ========= Import MUI modules ========== */
 
 /* ========= Import util modules ========== */
@@ -18,26 +18,15 @@ import { db, firebaseRef } from '../../../services/firebase/config.mjs';
 /* ============================================== RENDER ============ */
 /* ================================================================== */
 
-export default function AllQuestions({ questions }) {
+export default function AllQuestions({ questions, sessionId }) {
   // final return
   return (
     <>
-      <ul>
-        {
+      {
         questions.map((question) => (
-          <div key={question.id}>
-            <p>
-              Asked by:
-              {question.whoAsked}
-              <span>
-                Question:
-                {question.text}
-              </span>
-            </p>
-          </div>
+          <QuestionCard key={question.id} question={question} sessionId={sessionId} />
         ))
         }
-      </ul>
     </>
   );
 }

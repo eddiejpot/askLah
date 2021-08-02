@@ -3,7 +3,6 @@
 /* ================================================================== */
 
 /* ========= Import firebase modules ========== */
-// import { useAuthState } from 'react-firebase-hooks/auth';
 
 /* ========= Import axios========== */
 import axios from 'axios';
@@ -22,6 +21,7 @@ import { getCookie, createCookie, deleteCookie } from '../utils/cookie.mjs';
 /* ======== Import Firebase modules from config ============ */
 import { auth, firebaseRef, provider } from './services/firebase/config.mjs';
 
+/* ========= Import MUI modules ========== */
 /* ================================================================== */
 /* ============================================== RENDER ============ */
 /* ================================================================== */
@@ -85,7 +85,6 @@ export default function App() {
     if (getCookie('userId')) {
       setIsUserLoggedIn(() => true);
     }
-    console.log(`USERACTION---->${userAction}`);
     // --- If user passed Google Auth and is is logging in
     if (userData != null && userAction === 'logIn') {
       console.log('user passed google Auth and is logging in');
@@ -135,7 +134,7 @@ export default function App() {
   // [userData, isUserLoggedIn, userAction]
 
   return (
-    <div>
+    <>
       { isUserLoggedIn
         ? (
           <>
@@ -149,6 +148,6 @@ export default function App() {
             <LandingPage />
           </>
         )}
-    </div>
+    </>
   );
 }

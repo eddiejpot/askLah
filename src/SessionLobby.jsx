@@ -1,32 +1,30 @@
 /* ================================================================== */
-/* ===================================== Import Modules ============= */
+/* ======================================================== IMPORTS = */
 /* ================================================================== */
+// the comments for imports are a little messy due to prettier formatting
 
-/* ========= Import axios========== */
-import axios from 'axios';
-
-/* ========= Import react modules ========== */
-import React, { useState, useEffect, useRef } from 'react';
-
-/* ========= Import react components ========== */
-import Lobby from './components/session/participant/Lobby.jsx';
-import SessionTemplate from './components/session/participant/SessionTemplate.jsx';
-
-/* ========= Import util modules ========== */
-import { getCookie, createCookie, deleteCookie } from '../utils/cookie.mjs';
-
-/* ======== Import Firebase modules from config ============ */
-import { db } from './services/firebase/config.mjs';
+import axios from 'axios'; // Axios Module
+import React, { useState, useEffect, useRef } from 'react'; // React Module
+import Lobby from './components/session/participant/Lobby.jsx'; // React Component
+import SessionTemplate from './components/session/participant/SessionTemplate.jsx'; // React Component
+import NavBarParticipant from './components/navBar/NavBarParticipant.jsx'; // React Component
+import { getCookie, createCookie, deleteCookie } from '../utils/cookie.mjs'; // Util Module
+import { db } from './services/firebase/config.mjs'; // Firebase Module
 
 /* ================================================================== */
-/* ============================================== RENDER ============ */
+/* ========================================================= STYLES = */
 /* ================================================================== */
 
-export default function App({ windowUrl }) {
+/* ================================================================== */
+/* =========================================================== MAIN = */
+/* ================================================================== */
+
+export default function SessionLobby({ windowUrl }) {
   // Component states
   // components to render are sessionNotFound, lobby, session, loading
   const [componentToRender, setComponentToRender] = useState('loading');
   const [sessionDetails, setSessionDetails] = useState({});
+  const [userName, setUserName] = useState(getCookie('userName') || "You're Anonymous");
 
   // Lifecycle
   // On page load
@@ -62,7 +60,7 @@ export default function App({ windowUrl }) {
         output = (<Lobby sessionId={sessionId} sessionDetails={sessionDetails} setComponentToRender={setComponentToRender} />);
         break;
       case 'session':
-        output = (<SessionTemplate sessionId={sessionId} sessionDetails={sessionDetails} />);
+        output = (<SessionTemplate sessionId={sessionId} sessionDetails={sessionDetails} userName={userName} setUserName={setUserName} />);
         break;
       default:
         // sessionNotFound
@@ -72,8 +70,10 @@ export default function App({ windowUrl }) {
     return output;
   };
 
+  /* ======================================================== RENDER = */
   return (
     <div>
+      <NavBarParticipant sessionName={sessionDetails.title} userName={userName} setUserName={setUserName} />
       {chooseComponentToRender()}
     </div>
   );

@@ -21,4 +21,6 @@ export default function routes(app) {
   app.post('/api/users', usersController.search);
   app.post('/api/adduser', usersController.create);
   app.get('/api/sessions', sessionsController.search);
+  app.post('/api/addsession', sessionsController.create);
+  app.get('/api/allsessions', sessionsController.index);
 }

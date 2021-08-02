@@ -57,12 +57,16 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.2",
+    "@material-ui/icons": "^4.11.2",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "firebase": "^8.8.0",
     "method-override": "^3.0.0",
+    "moment": "^2.29.1",
     "pg": "^8.5.1",
-    "sequelize": "^6.3.5"
+    "react-copy-to-clipboard": "^5.0.3",
+    "sequelize": "^6.3.5",
+    "uuid": "^8.3.2"
   }
 }

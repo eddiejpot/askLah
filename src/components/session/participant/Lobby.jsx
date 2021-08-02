@@ -12,7 +12,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
 /* ========= Import react components ========== */
-import NavBarParticipant from '../../navBar/NavBarParticipant.jsx';
+// import NavBarParticipant from '../../navBar/NavBarParticipant.jsx';
 
 /* ======== Import Firebase modules from config ============ */
 
@@ -26,7 +26,7 @@ export default function Lobby({ sessionId, setComponentToRender, sessionDetails 
       {sessionDetails
         ? (
           <>
-            <NavBarParticipant sessionName={sessionDetails.title} />
+            {/* <NavBarParticipant sessionName={sessionDetails.title} /> */}
             <p>{sessionDetails.speaker}</p>
             <p>{sessionDetails.date}</p>
             <p>{sessionDetails.description}</p>

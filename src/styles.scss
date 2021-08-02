@@ -1,3 +1,15 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: pink;
+  background-color: #f7f4e4;
+  // background: -webkit-linear-gradient(70deg, #ff6464 40%, #8a5afa 40%);
+  // background: -o-linear-gradient(70deg, #ff6464 40%, #5ac8fa 40%);
+  // background: -moz-linear-gradient(70deg, #ff6464 40%, #5ac8fa 40%);
+  // background: linear-gradient(20deg, #3f51b5 40%, #e9f3ff 40%);
 }

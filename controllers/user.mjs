@@ -36,7 +36,6 @@ export default function initUsersController(db) {
   // create new user
   const create = async (request, response) => {
     const { displayName, email } = request.body;
-    console.log(displayName, email);
     try {
       const newUser = await db.User.create(
         {
@@ -44,8 +43,6 @@ export default function initUsersController(db) {
           email,
         },
       );
-      console.log('newUser Created!');
-      console.log(newUser);
       response.send(newUser);
     } catch (error) {
       console.error('!Error in creating new user', error);

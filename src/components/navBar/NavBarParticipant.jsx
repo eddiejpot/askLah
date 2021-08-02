@@ -46,6 +46,8 @@ export default function NavBarParticipant({ sessionName, userName, setUserName }
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
+            Session:
+            {' '}
             {sessionName}
           </Typography>
           <FormDialog userName={userName} setUserName={setUserName} />

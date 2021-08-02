@@ -13,7 +13,7 @@ const { Op } = pkg;
  */
 
 export default function initSessionsController(db) {
-  // check if user email in db
+  // find session details by sessionId
   const search = async (request, response) => {
     const { sessionId } = request.query;
     try {
@@ -29,28 +29,49 @@ export default function initSessionsController(db) {
     }
   };
 
-  // // create new user
-  // const create = async (request, response) => {
-  //   const { displayName, email } = request.body;
-  //   console.log(displayName, email);
-  //   try {
-  //     const newUser = await db.User.create(
-  //       {
-  //         displayName,
-  //         email,
-  //       },
-  //     );
-  //     console.log('newUser Created!');
-  //     console.log(newUser);
-  //     response.send(newUser);
-  //   } catch (error) {
-  //     console.error('!Error in creating new user', error);
-  //   }
-  // };
+  // find all sessions that below to user
+  const index = async (request, response) => {
+    const { userId } = request.query;
+    try {
+      const allSessions = await db.Session.findAll({
+        where: {
+          userId,
+        },
+      });
+      // send back all sessions
+      response.send(allSessions);
+    } catch (error) {
+      console.error('!Error getting session', error);
+    }
+  };
+
+  // create new session
+  const create = async (request, response) => {
+    const {
+      userId, title, speaker, description, date, sessionId,
+    } = request.body;
+    try {
+      const newSession = await db.Session.create(
+        {
+          userId,
+          title,
+          speaker,
+          description,
+          date,
+          sessionId,
+        },
+      );
+      response.send(newSession);
+    } catch (error) {
+      console.error('!Error in creating new session', error);
+    }
+  };
 
   // return all functions we define in an object
   // refer to the routes file above to see this used
   return {
     search,
+    index,
+    create,
   };
 }
