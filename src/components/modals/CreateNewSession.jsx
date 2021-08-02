@@ -2,7 +2,6 @@
 /* ======================================================== IMPORTS = */
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
-
 import axios from 'axios'; // Axios Module
 import { v4 as uuidv4 } from 'uuid'; // uuid Module
 import React, { useState, useRef } from 'react'; // React Module
@@ -35,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 /* ================================================================== */
 /* =========================================================== MAIN = */
 /* ================================================================== */
-
 export default function CreateNewSession({ userSessions, setUserSessions }) {
   const classes = useStyles();
 

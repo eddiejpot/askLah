@@ -1,3 +1,7 @@
+/* ================================================================== */
+/* ======================================================== IMPORTS = */
+/* ================================================================== */
+// the comments for imports are a little messy due to prettier formatting
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -5,6 +9,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import ShareIcon from '@material-ui/icons/Share'; // MUI Module
 import { CopyToClipboard } from 'react-copy-to-clipboard'; // React Module
 
+/* ================================================================== */
+/* ========================================================= STYLES = */
+/* ================================================================== */
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
@@ -17,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/* ================================================================== */
+/* =========================================================== MAIN = */
+/* ================================================================== */
 export default function CopyClipboardButton({ text, buttonSize }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -35,6 +45,7 @@ export default function CopyClipboardButton({ text, buttonSize }) {
     setState({ ...state, open: false });
   };
 
+  /* ======================================================== RENDER = */
   return (
     <div className={classes.root}>
       <CopyToClipboard text={text}>

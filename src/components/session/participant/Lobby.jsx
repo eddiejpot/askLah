@@ -2,7 +2,6 @@
 /* ======================================================== IMPORTS = */
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
-
 import React, { useState, useEffect } from 'react'; // React Module
 import moment from 'moment'; // moment Module
 import { makeStyles } from '@material-ui/core/styles'; // MUI Module
@@ -10,7 +9,6 @@ import Grid from '@material-ui/core/Grid'; // MUI Module
 import CssBaseline from '@material-ui/core/CssBaseline'; // MUI Module
 import Typography from '@material-ui/core/Typography'; // MUI Module
 import Container from '@material-ui/core/Container'; // MUI Module
-import Link from '@material-ui/core/Link'; // MUI Module
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt'; // MUI Module
 import Button from '@material-ui/core/Button'; // MUI Module
 
@@ -53,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
 /* ================================================================== */
 /* =========================================================== MAIN = */
 /* ================================================================== */
-
 export default function Lobby({ sessionId, setComponentToRender, sessionDetails }) {
   const classes = useStyles();
   /* ======================================================== RENDER = */
@@ -114,17 +111,3 @@ export default function Lobby({ sessionId, setComponentToRender, sessionDetails 
     </div>
   );
 }
-
-// <>
-//   {sessionDetails
-//     ? (
-//       <>
-//         {/* <NavBarParticipant sessionName={sessionDetails.title} /> */}
-//         <p>{sessionDetails.speaker}</p>
-//         <p>{sessionDetails.date}</p>
-//         <p>{sessionDetails.description}</p>
-//         <button type="button" onClick={() => setComponentToRender('session')}> Enter QA </button>
-//       </>
-//     )
-//     : null}
-// </>

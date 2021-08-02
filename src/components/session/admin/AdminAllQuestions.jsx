@@ -1,25 +1,15 @@
 /* ================================================================== */
-/* ===================================== Import Modules ============= */
+/* ======================================================== IMPORTS = */
 /* ================================================================== */
-
-/* ========= Import firebase ========== */
-import React, { useState, useEffect } from 'react';
-import { db, firebaseRef } from '../../../services/firebase/config.mjs';
-
-/* ========= Import react modules ========== */
-
-/* ========= Import react components ========== */
-import QuestionCardAdmin from '../../cards/QuestionCardAdmin.jsx';
-/* ========= Import MUI modules ========== */
-
-/* ========= Import util modules ========== */
+// the comments for imports are a little messy due to prettier formatting
+import React, { useState, useEffect } from 'react'; // React Module
+import QuestionCardAdmin from '../../cards/QuestionCardAdmin.jsx'; // React Component
 
 /* ================================================================== */
-/* ============================================== RENDER ============ */
+/* =========================================================== MAIN = */
 /* ================================================================== */
-
 export default function AdminAllQuestions({ questions, sessionId }) {
-  // final return
+  /* ======================================================== RENDER = */
   return (
     <>
       {

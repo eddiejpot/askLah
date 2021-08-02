@@ -1,29 +1,21 @@
 /* ================================================================== */
-/* ===================================== Import Modules ============= */
+/* ======================================================== IMPORTS = */
 /* ================================================================== */
+// the comments for imports are a little messy due to prettier formatting
+import axios from 'axios'; // Axios Module
+import React, { useState, useEffect } from 'react'; // React Module
+import NavBarAdmin from './components/navBar/NavBarAdmin.jsx'; // React Component
+import LandingPage from './components/landingPage/LandingPage.jsx'; // React Component
+import AdminDashboard from './components/adminDashboard/AdminDashboard.jsx'; // React Component
+import { getCookie, createCookie, deleteCookie } from '../utils/cookie.mjs'; // Util Component
 
-/* ========= Import firebase modules ========== */
-
-/* ========= Import axios========== */
-import axios from 'axios';
-
-/* ========= Import react modules ========== */
-import React, { useState, useEffect } from 'react';
-
-/* ========= Import react components ========== */
-import NavBarAdmin from './components/navBar/NavBarAdmin.jsx';
-import LandingPage from './components/landingPage/LandingPage.jsx';
-import AdminDashboard from './components/adminDashboard/AdminDashboard.jsx';
-
-/* ========= Import util modules ========== */
-import { getCookie, createCookie, deleteCookie } from '../utils/cookie.mjs';
-
-/* ======== Import Firebase modules from config ============ */
+/* ================================================================== */
+/* ================= Import Firebase modules from config ============ */
+/* ================================================================== */
 import { auth, firebaseRef, provider } from './services/firebase/config.mjs';
 
-/* ========= Import MUI modules ========== */
 /* ================================================================== */
-/* ============================================== RENDER ============ */
+/* ====================================================== APP SETUP = */
 /* ================================================================== */
 
 export default function App() {
@@ -131,8 +123,8 @@ export default function App() {
       setUserData(() => null);
     }
   }, [userData]);
-  // [userData, isUserLoggedIn, userAction]
 
+  /* ======================================================== RENDER = */
   return (
     <>
       { isUserLoggedIn

@@ -2,10 +2,8 @@
 /* ======================================================== IMPORTS = */
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
-
 import moment from 'moment'; // Moment Module
 import axios from 'axios'; // Axios Module
-import { v4 as uuidv4 } from 'uuid'; // uuid Module
 import React, { useState, useRef } from 'react'; // React Module
 import Button from '@material-ui/core/Button'; // MUI Module
 import Typography from '@material-ui/core/Typography'; // MUI Module
@@ -14,11 +12,9 @@ import TextField from '@material-ui/core/TextField'; // MUI Module
 import Dialog from '@material-ui/core/Dialog'; // MUI Module
 import DialogActions from '@material-ui/core/DialogActions'; // MUI Module
 import DialogContent from '@material-ui/core/DialogContent'; // MUI Module
-import DialogContentText from '@material-ui/core/DialogContentText'; // MUI Module
 import DialogTitle from '@material-ui/core/DialogTitle'; // MUI Module
 import { makeStyles } from '@material-ui/core/styles'; // MUI Module
 import EditIcon from '@material-ui/icons/Edit'; // MUI Module
-import { db, firebaseRef } from '../../services/firebase/config.mjs'; // Firebase Module
 import { getCookie } from '../../../utils/cookie.mjs'; // Util Module
 
 /* ================================================================== */
@@ -36,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
 /* ================================================================== */
 /* =========================================================== MAIN = */
 /* ================================================================== */
-
 export default function EditSession({ sessionDetails, setSessionDetails, setUserSessions }) {
   const classes = useStyles();
 

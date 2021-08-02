@@ -2,7 +2,6 @@
 /* ======================================================== IMPORTS = */
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';

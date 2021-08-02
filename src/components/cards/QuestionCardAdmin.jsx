@@ -2,14 +2,11 @@
 /* ======================================================== IMPORTS = */
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
-
 import React, { useState, useEffect } from 'react'; // React Module
 import { makeStyles } from '@material-ui/core/styles'; // MUI Module
 import Grid from '@material-ui/core/Grid'; // MUI Module
 import Card from '@material-ui/core/Card'; // MUI Module
-import CardActions from '@material-ui/core/CardActions'; // MUI Module
 import CardContent from '@material-ui/core/CardContent'; // MUI Module
-import Button from '@material-ui/core/Button'; // MUI Module
 import Typography from '@material-ui/core/Typography'; // MUI Module
 import Box from '@material-ui/core/Box'; // MUI Module
 import Checkbox from '@material-ui/core/Checkbox'; // MUI Module
@@ -17,6 +14,9 @@ import FormGroup from '@material-ui/core/FormGroup'; // MUI Module
 import FormControlLabel from '@material-ui/core/FormControlLabel'; // MUI Module
 import { db, firebaseRef } from '../../services/firebase/config.mjs'; // Firebase Module
 
+/* ================================================================== */
+/* ========================================================= STYLES = */
+/* ================================================================== */
 const useStyles = makeStyles((theme) => ({
   root: {
     // flexGrow: 1,
@@ -58,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/* ================================================================== */
+/* =========================================================== MAIN = */
+/* ================================================================== */
 export default function QuestionCardAdmin({ question, sessionId }) {
   const classes = useStyles();
 
@@ -97,6 +100,7 @@ export default function QuestionCardAdmin({ question, sessionId }) {
     return componentToRender;
   };
 
+  /* ======================================================== RENDER = */
   return (
     <Card className={classes.root}>
       <CardContent className={classes.card}>

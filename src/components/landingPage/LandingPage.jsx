@@ -2,7 +2,6 @@
 /* ======================================================== IMPORTS = */
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
-
 import React from 'react'; // React Module
 import { makeStyles } from '@material-ui/core/styles'; // MUI Module
 import Grid from '@material-ui/core/Grid'; // MUI Module
@@ -68,7 +67,6 @@ function Copyright() {
 /* ================================================================== */
 /* =========================================================== MAIN = */
 /* ================================================================== */
-
 export default function LandingPage() {
   const classes = useStyles();
   /* ======================================================== RENDER = */

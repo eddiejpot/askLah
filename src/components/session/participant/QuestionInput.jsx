@@ -2,17 +2,13 @@
 /* ======================================================== IMPORTS = */
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
-
 import React, { useState, useEffect, useRef } from 'react'; // React Module
 import TextField from '@material-ui/core/TextField'; // MUI Module
 import Grid from '@material-ui/core/Grid'; // MUI Module
-import CssBaseline from '@material-ui/core/CssBaseline'; // MUI Module
 import { makeStyles } from '@material-ui/core/styles'; // MUI Module
 import Button from '@material-ui/core/Button'; // MUI Module
-import Typography from '@material-ui/core/Typography'; // MUI Module
 import { db, firebaseRef } from '../../../services/firebase/config.mjs'; // Firebase Module
 import FormDialogMini from '../../modals/FormDialogMini.jsx'; // React Component
-import { getCookie } from '../../../../utils/cookie.mjs'; // Util Module
 
 /* ================================================================== */
 /* ========================================================= STYLES = */
@@ -36,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
   },
 }));
+
 /* ================================================================== */
 /* =========================================================== MAIN = */
 /* ================================================================== */

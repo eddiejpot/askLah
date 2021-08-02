@@ -1,11 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+/* ================================================================== */
+/* ======================================================== IMPORTS = */
+/* ================================================================== */
+// the comments for imports are a little messy due to prettier formatting
+import React from 'react'; // React Module
+import PropTypes from 'prop-types'; // React Module
+import { makeStyles } from '@material-ui/core/styles'; // MUI Module
+import AppBar from '@material-ui/core/AppBar'; // MUI Module
+import Tabs from '@material-ui/core/Tabs'; // MUI Module
+import Tab from '@material-ui/core/Tab'; // MUI Module
+import Typography from '@material-ui/core/Typography'; // MUI Module
+import Box from '@material-ui/core/Box'; // MUI Module
 
 function TabPanel(props) {
   const {
@@ -42,6 +46,9 @@ function a11yProps(index) {
   };
 }
 
+/* ================================================================== */
+/* ========================================================= STYLES = */
+/* ================================================================== */
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -50,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/* ================================================================== */
+/* =========================================================== MAIN = */
+/* ================================================================== */
 export default function ScrollableTabsButtonAuto({ renderNotAnswered, renderAnswered }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -58,6 +68,7 @@ export default function ScrollableTabsButtonAuto({ renderNotAnswered, renderAnsw
     setValue(newValue);
   };
 
+  /* ======================================================== RENDER = */
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">

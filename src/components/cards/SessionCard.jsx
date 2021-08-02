@@ -2,29 +2,20 @@
 /* ======================================================== IMPORTS = */
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
-
 import moment from 'moment';
 import React from 'react'; // React Module
-import { CopyToClipboard } from 'react-copy-to-clipboard'; // React Module
 import { makeStyles } from '@material-ui/core/styles'; // MUI Module
 import Grid from '@material-ui/core/Grid'; // MUI Module
 import Card from '@material-ui/core/Card'; // MUI Module
-import CardActions from '@material-ui/core/CardActions'; // MUI Module
 import CardContent from '@material-ui/core/CardContent'; // MUI Module
-import Button from '@material-ui/core/Button'; // MUI Module
 import Typography from '@material-ui/core/Typography'; // MUI Module
-import Link from '@material-ui/core/Link'; // MUI Module
-import Box from '@material-ui/core/Box'; // MUI Module
-import Container from '@material-ui/core/Container'; // MUI Module
 import CssBaseline from '@material-ui/core/CssBaseline'; // MUI Module
 import Tooltip from '@material-ui/core/Tooltip'; // MUI Module
-import Snackbar from '@material-ui/core/Snackbar'; // MUI Module
 import CopyClipboardButton from '../buttons/CopyClipboardButton.jsx'; // React Component
 
 /* ================================================================== */
 /* ========================================================= STYLES = */
 /* ================================================================== */
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -47,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 /* ================================================================== */
 /* =========================================================== MAIN = */
 /* ================================================================== */
-
 export default function SessionCard({ sessionDetails, setComponentToRender }) {
   const classes = useStyles();
 
@@ -76,6 +66,7 @@ export default function SessionCard({ sessionDetails, setComponentToRender }) {
   /* ======================================================== RENDER = */
   return (
     <Card className={classes.root}>
+      <CssBaseline />
       <CardContent>
         <Grid container className={classes.content}>
           <Grid item xs={6} className={classes.grid}>
@@ -112,35 +103,3 @@ export default function SessionCard({ sessionDetails, setComponentToRender }) {
     </Card>
   );
 }
-
-// <Grid container spacing={3}>
-//   <Grid item xs={6} className={classes.vote}>
-//     <Typography gutterBottom variant="body1">
-//       {sessionDetails.title}
-//     </Typography>
-//     <CardActions>
-//       {/* <Button size="small">{question.vote}</Button> */}
-//     </CardActions>
-//   </Grid>
-
-//   <Grid item xs>
-//     <Typography gutterBottom variant="body1">
-//       asdsad
-//     </Typography>
-//   </Grid>
-
-//   <Grid item xs>
-//     <Typography gutterBottom variant="body1">
-//       {sessionDetails.date}
-//     </Typography>
-//   </Grid>
-
-//   <Grid item xs>
-//     <CopyToClipboard text={`${window.location.href
-//     }session/${sessionDetails.sessionId}`}
-//     >
-//       <button>{sessionDetails.sessionId}</button>
-//     </CopyToClipboard>
-//   </Grid>
-
-// </Grid>

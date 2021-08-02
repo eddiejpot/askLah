@@ -1,29 +1,18 @@
 /* ================================================================== */
-/* ===================================== Import Modules ============= */
+/* ======================================================== IMPORTS = */
 /* ================================================================== */
-
-/* ========= Import axios========== */
-import axios from 'axios';
-
-/* ========= Import react modules ========== */
-import React, { useState, useEffect } from 'react';
-
-/* ========= Import react components ========== */
-
-/* ========= Import MUI modules ========== */
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-
-/* ========= Import util modules ========== */
-import { getCookie } from '../../../utils/cookie.mjs';
+// the comments for imports are a little messy due to prettier formatting
+import React, { useState, useEffect } from 'react'; // React Module
+import { makeStyles } from '@material-ui/core/styles'; // MUI Module
+import AppBar from '@material-ui/core/AppBar'; // MUI Module
+import Toolbar from '@material-ui/core/Toolbar'; // MUI Module
+import Typography from '@material-ui/core/Typography'; // MUI Module
+import Button from '@material-ui/core/Button'; // MUI Module
+import { getCookie } from '../../../utils/cookie.mjs'; // Util Module
 
 /* ================================================================== */
-/* ============================================== RENDER ============ */
+/* ========================================================= STYLES = */
 /* ================================================================== */
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -46,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/* ================================================================== */
+/* =========================================================== MAIN = */
+/* ================================================================== */
 export default function NavBarAdmin({
   isUserLoggedIn, logInWithGoogle, signUpWithGoogle, logOut,
 }) {
@@ -84,7 +76,7 @@ export default function NavBarAdmin({
     );
   };
 
-  // final return
+  /* ======================================================== RENDER = */
   return (
     <div className={classes.root}>
       <AppBar position="absolute" className={classes.nav}>

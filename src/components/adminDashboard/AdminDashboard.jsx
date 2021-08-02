@@ -2,7 +2,6 @@
 /* ======================================================== IMPORTS = */
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
-
 import axios from 'axios'; // Axios Module
 import React, { useState, useEffect } from 'react'; // React Module
 import { makeStyles } from '@material-ui/core/styles'; // MUI Module
@@ -101,7 +100,7 @@ export default function AdminDashboard() {
                       component="button"
                       variant="body2"
                       onClick={() => {
-                        console.info("I'm a button.");
+                        console.info('Archie link not done.');
                       }}
                     >
                       view archived

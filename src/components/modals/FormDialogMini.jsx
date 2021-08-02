@@ -2,7 +2,6 @@
 /* ======================================================== IMPORTS = */
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
-
 import * as React from 'react'; // React Module
 import Button from '@material-ui/core/Button'; // MUI Module
 import TextField from '@material-ui/core/TextField'; // MUI Module
@@ -10,7 +9,6 @@ import Dialog from '@material-ui/core/Dialog'; // MUI Module
 import DialogActions from '@material-ui/core/DialogActions'; // MUI Module
 import DialogContent from '@material-ui/core/DialogContent'; // MUI Module
 import DialogContentText from '@material-ui/core/DialogContentText'; // MUI Module
-import CssBaseline from '@material-ui/core/CssBaseline'; // MUI Module
 import { makeStyles } from '@material-ui/core/styles'; // MUI Module
 import DialogTitle from '@material-ui/core/DialogTitle'; // MUI Module
 import { getCookie, createCookie, deleteCookie } from '../../../utils/cookie.mjs'; // Util Module
@@ -60,12 +58,8 @@ export default function FormDialogMini({ userName, setUserName }) {
 
   return (
     <>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Ask
-      </Button> */}
       <Button
         variant="outlined"
-        // color="primary"
         className={classes.button}
         onClick={handleClickOpen}
       >

@@ -1,19 +1,20 @@
 /* ================================================================== */
-/* ===================================== Import Modules ============= */
+/* ======================================================== IMPORTS = */
 /* ================================================================== */
-/* ========= Import util modules ========== */
+// the comments for imports are a little messy due to prettier formatting
+import * as React from 'react'; // React Module
+import Button from '@material-ui/core/Button'; // MUI Module
+import TextField from '@material-ui/core/TextField'; // MUI Module
+import Dialog from '@material-ui/core/Dialog'; // MUI Module
+import DialogActions from '@material-ui/core/DialogActions'; // MUI Module
+import DialogContent from '@material-ui/core/DialogContent'; // MUI Module
+import DialogContentText from '@material-ui/core/DialogContentText'; // MUI Module
+import DialogTitle from '@material-ui/core/DialogTitle'; // MUI Module
+import { getCookie, createCookie, deleteCookie } from '../../../utils/cookie.mjs'; // Util Module
 
-/* ========= Import MUI modules ========== */
-import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { getCookie, createCookie, deleteCookie } from '../../../utils/cookie.mjs';
-
+/* ================================================================== */
+/* =========================================================== MAIN = */
+/* ================================================================== */
 export default function FormDialog({ userName, setUserName }) {
   const [open, setOpen] = React.useState(false);
   // if session has userName cookie, show value
@@ -46,6 +47,7 @@ export default function FormDialog({ userName, setUserName }) {
     userNameRef.current = event.target.value;
   };
 
+  /* ======================================================== RENDER = */
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
