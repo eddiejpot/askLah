@@ -3,7 +3,7 @@
 /* ================================================================== */
 // the comments for imports are a little messy due to prettier formatting
 
-import React, { useState, useEffect } from 'react'; // React Module
+import React, { useState, useEffect, useRef } from 'react'; // React Module
 import { makeStyles } from '@material-ui/core/styles'; // MUI Module
 import Grid from '@material-ui/core/Grid'; // MUI Module
 import CssBaseline from '@material-ui/core/CssBaseline'; // MUI Module
@@ -14,6 +14,7 @@ import { db, firebaseRef } from '../../../services/firebase/config.mjs'; // Fire
 import NavBarParticipant from '../../navBar/NavBarParticipant.jsx'; // React Component
 import AllQuestions from './AllQuestions.jsx'; // React Component
 import QuestionInput from './QuestionInput.jsx'; // React Component
+import ScrollableTabsButtonAuto from '../../tabs/ScrollableTabsButtonAuto.jsx';
 import { getCookie } from '../../../../utils/cookie.mjs'; // Util Module
 
 /* ================================================================== */
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
 }));
+
 /* ================================================================== */
 /* =========================================================== MAIN = */
 /* ================================================================== */
@@ -55,10 +57,10 @@ export default function SessionTemplate({
 }) {
   const classes = useStyles();
   const [questions, setQuestions] = useState([]);
-  // const [userName, setUserName] = useState(getCookie('userName') || "You're Anonymous");
 
   useEffect(async () => {
     // Realtime Listener for updates to DB
+    // higest votes go at the top
     const unsubscribe = db.collection(sessionId)
       .orderBy('vote', 'desc')
       .onSnapshot((querySnapshot) => {
@@ -74,6 +76,25 @@ export default function SessionTemplate({
     // unsubscribe();
   }, []);
 
+  // Helper function that splits all the questions into answered / unanswered
+  const splitQuestions = (array) => {
+    const answeredArr = [];
+    const unAnsweredArr = [];
+    array.forEach((question) => {
+      if (question.isAnswered) {
+        answeredArr.push(question);
+      }
+      else {
+        unAnsweredArr.push(question);
+      }
+    });
+
+    return {
+      answered: answeredArr,
+      unAnswered: unAnsweredArr,
+    };
+  };
+
   /* ======================================================== RENDER = */
   return (
     <div className={classes.root}>
@@ -85,8 +106,14 @@ export default function SessionTemplate({
           </Typography>
           <QuestionInput sessionId={sessionId} userName={userName} setUserName={setUserName} />
         </Grid>
+
         <Grid container className={classes.allQuestions}>
-          <AllQuestions questions={questions} sessionId={sessionId} />
+          <ScrollableTabsButtonAuto
+            renderNotAnswered={<AllQuestions questions={splitQuestions(questions).unAnswered} sessionId={sessionId} />}
+            renderAnswered={<AllQuestions questions={splitQuestions(questions).answered} sessionId={sessionId} />}
+          />
+          {/* <AllQuestions questions={questions} sessionId={sessionId} /> */}
+
         </Grid>
       </Container>
     </div>

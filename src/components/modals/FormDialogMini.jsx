@@ -1,21 +1,36 @@
 /* ================================================================== */
-/* ===================================== Import Modules ============= */
+/* ======================================================== IMPORTS = */
 /* ================================================================== */
-/* ========= Import util modules ========== */
+// the comments for imports are a little messy due to prettier formatting
 
-/* ========= Import MUI modules ========== */
-import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { getCookie, createCookie, deleteCookie } from '../../../utils/cookie.mjs';
+import * as React from 'react'; // React Module
+import Button from '@material-ui/core/Button'; // MUI Module
+import TextField from '@material-ui/core/TextField'; // MUI Module
+import Dialog from '@material-ui/core/Dialog'; // MUI Module
+import DialogActions from '@material-ui/core/DialogActions'; // MUI Module
+import DialogContent from '@material-ui/core/DialogContent'; // MUI Module
+import DialogContentText from '@material-ui/core/DialogContentText'; // MUI Module
+import CssBaseline from '@material-ui/core/CssBaseline'; // MUI Module
+import { makeStyles } from '@material-ui/core/styles'; // MUI Module
+import DialogTitle from '@material-ui/core/DialogTitle'; // MUI Module
+import { getCookie, createCookie, deleteCookie } from '../../../utils/cookie.mjs'; // Util Module
 
+/* ================================================================== */
+/* ========================================================= STYLES = */
+/* ================================================================== */
+const useStyles = makeStyles((theme) => ({
+  button: {
+    marginLeft: '0.25rem',
+    width: '100%',
+    height: '100%',
+  },
+}));
+
+/* ================================================================== */
+/* =========================================================== MAIN = */
+/* ================================================================== */
 export default function FormDialogMini({ userName, setUserName }) {
-  console.log(userName);
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const userNameRef = React.useRef();
 
@@ -44,9 +59,17 @@ export default function FormDialogMini({ userName, setUserName }) {
   };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+    <>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         Ask
+      </Button> */}
+      <Button
+        variant="outlined"
+        // color="primary"
+        className={classes.button}
+        onClick={handleClickOpen}
+      >
+        ASK
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Hello! 👋</DialogTitle>
@@ -69,6 +92,6 @@ export default function FormDialogMini({ userName, setUserName }) {
           <Button onClick={handleSubmit}>Submit</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }

@@ -73,6 +73,24 @@ export default function QuestionCard({ question, sessionId }) {
     setBtnDisabled(() => true);
   };
 
+  const renderStatus = () => {
+    let componentToRender;
+    if (question.isAnswered) {
+      componentToRender = (
+        <Typography gutterBottom variant="body1">
+          Answered
+        </Typography>
+      );
+    } else {
+      componentToRender = (
+        <Typography gutterBottom variant="body1">
+          Not Answered
+        </Typography>
+      );
+    }
+    return componentToRender;
+  };
+
   return (
     <Card className={classes.root}>
       <CardContent className={classes.card}>
@@ -102,12 +120,7 @@ export default function QuestionCard({ question, sessionId }) {
           </Grid>
 
           <Grid className={classes.status}>
-            <Typography gutterBottom variant="body1">
-              Status
-            </Typography>
-            <Typography gutterBottom variant="body1">
-              {question.status}
-            </Typography>
+            {renderStatus()}
           </Grid>
         </Grid>
       </CardContent>
