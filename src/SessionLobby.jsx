@@ -5,21 +5,33 @@
 
 import axios from 'axios'; // Axios Module
 import React, { useState, useEffect, useRef } from 'react'; // React Module
+import { makeStyles } from '@material-ui/core/styles'; // MUI Module
 import Lobby from './components/session/participant/Lobby.jsx'; // React Component
 import SessionTemplate from './components/session/participant/SessionTemplate.jsx'; // React Component
 import NavBarParticipant from './components/navBar/NavBarParticipant.jsx'; // React Component
 import { getCookie, createCookie, deleteCookie } from '../utils/cookie.mjs'; // Util Module
 import { db } from './services/firebase/config.mjs'; // Firebase Module
+import CircularIndeterminate from './components/loading/CircularIndeterminate.jsx'; // MUI Module
 
 /* ================================================================== */
 /* ========================================================= STYLES = */
 /* ================================================================== */
-
+const useStyles = makeStyles((theme) => ({
+  main: {
+    // height: '100vh',
+    // width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+}));
 /* ================================================================== */
 /* =========================================================== MAIN = */
 /* ================================================================== */
 
 export default function SessionLobby({ windowUrl }) {
+  const classes = useStyles();
   // Component states
   // components to render are sessionNotFound, lobby, session, loading
   const [componentToRender, setComponentToRender] = useState('loading');
@@ -54,7 +66,7 @@ export default function SessionLobby({ windowUrl }) {
     let output;
     switch (componentToRender) {
       case 'loading':
-        output = (<h1>loading</h1>);
+        output = (<CircularIndeterminate />);
         break;
       case 'lobby':
         output = (<Lobby sessionId={sessionId} sessionDetails={sessionDetails} setComponentToRender={setComponentToRender} />);
@@ -74,7 +86,9 @@ export default function SessionLobby({ windowUrl }) {
   return (
     <div>
       <NavBarParticipant sessionName={sessionDetails.title} userName={userName} setUserName={setUserName} />
-      {chooseComponentToRender()}
+      <div className={classes.main}>
+        {chooseComponentToRender()}
+      </div>
     </div>
   );
 }

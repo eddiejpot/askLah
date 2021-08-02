@@ -15,7 +15,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { getCookie, createCookie, deleteCookie } from '../../../utils/cookie.mjs';
 
 export default function FormDialog({ userName, setUserName }) {
-  console.log(userName);
   const [open, setOpen] = React.useState(false);
   // if session has userName cookie, show value
   // const [userName, setUserName] = React.useState(getCookie('userName') || "You're Anonymous");

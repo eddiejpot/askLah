@@ -8,9 +8,9 @@ module.exports = {
       sessionsList.push(
         {
           user_id: userIds[i],
-          title: 'How to snooze with Doctor Brown',
+          title: 'How to never snooze your alarm ever',
           speaker: 'Dr Brown',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mattis tellus ut est venenatis sodales. Morbi gravida interdum blandit. Pellentesque.',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at leo sagittis, eleifend urna quis, lobortis turpis. Nunc mauris sapien, condimentum vitae aliquam et, lacinia eu lectus. <br> Etiam malesuada justo non elementum tempus. Fusce vel dui scelerisque dui convallis auctor.',
           date: new Date(),
           session_id: 'USHIW123',
           created_at: new Date(),

@@ -69,7 +69,7 @@ export default function QuestionCard({ question, sessionId }) {
     db.collection(sessionId).doc(question.id).update({
       vote: newVoteValue,
     });
-    // // disable button for user. they can only vote for each item once
+    // disable button for user. they can only vote for each item once
     setBtnDisabled(() => true);
   };
 

@@ -23,7 +23,7 @@ export default function initSessionModel(sequelize, DataTypes) {
         type: DataTypes.STRING,
       },
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       date: {
         type: DataTypes.DATE,
