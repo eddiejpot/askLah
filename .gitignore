@@ -9,6 +9,3 @@ dist
 
 #ignore .env
 .env
-
-#ignore .baelrc
-.babelrc
