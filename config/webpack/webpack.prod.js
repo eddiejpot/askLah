@@ -7,7 +7,7 @@ module.exports = merge(common, {
   entry: {
     // main: ['../../src/index.jsx'],
     // main: ['./src/index.jsx'],
-    main: path.resolve(__dirname, 'src/index.jsx'),
+    main: './src/index.jsx',
   },
   mode: 'production',
   stats: {
@@ -18,7 +18,7 @@ module.exports = merge(common, {
       // name this file main, so that it does not get automatically requested as a static file
       filename: 'main.html',
       // inject: true,
-      template: path.resolve(__dirname, 'src/index.html'),
+      template: './src/index.html',
       // template: path.resolve(__dirname, '..', 'src', 'index.html'),
       // a favicon can be included in the head. use this config to point to it
       // favicon: resolve(__dirname, '..', 'src', 'favicon.png'),
