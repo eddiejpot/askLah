@@ -9,6 +9,9 @@ module.exports = merge(common, {
     main: ['./src/index.jsx'],
   },
   mode: 'production',
+  stats: {
+    children: true,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       // name this file main, so that it does not get automatically requested as a static file
