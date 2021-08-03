@@ -8,6 +8,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       favicon: path.resolve(__dirname, '../../public/ra-logo.png'),
     }),
+    '@babel/plugin-transform-runtime',
   ],
   output: {
     filename: '[name]-[contenthash].bundle.js',
