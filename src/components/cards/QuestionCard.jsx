@@ -58,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
     width: '0.5rem',
     padding: '1rem',
   },
+  askquestion: {
+    textAlign: 'left',
+  },
 }));
 
 /* ================================================================== */
@@ -118,7 +121,7 @@ export default function QuestionCard({ question, sessionId }) {
             <Typography gutterBottom variant="body2" color="text.secondary">
               {question.whoAsked}
             </Typography>
-            <Typography variant="body1">
+            <Typography variant="body1" className={classes.askquestion}>
               <Box fontWeight="fontWeightBold">
                 {question.text}
               </Box>
