@@ -15,7 +15,7 @@ On a more technical level, this project is/was for me to practice and learn more
 ## ✋ How the app works
 
 **DEMO VIDEO (NON-TECHNICAL)**
-[![DemoVideo](/readme_images/ask-lah-demo-video-dp.jpg)](https://youtu.be/466AbXvMdzc 'DemoVideo')
+[![DemoVideo](/readme_images/ask-lah-demo-video-dp.jpg)](https://youtu.be/w1Udv3QUgLY) 'DemoVideo')
 _Click the image to direct to video_
 
 ## 🌈 Features
