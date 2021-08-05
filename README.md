@@ -15,7 +15,7 @@ On a more technical level, this project is/was for me to practice and learn more
 ## 💻 Deployed app
 
 <!-- prettier-ignore -->
-[AskLah on Heroku](https://thawing-retreat-54880.herokuapp.com/){:target="_blank"}
+<a href="https://thawing-retreat-54880.herokuapp.com/" target="_blank">AskLah on Heroku</a>
 
 ## ✋ How the app works
 
