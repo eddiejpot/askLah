@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react'; // React Module
 import NavBarAdmin from './components/navBar/NavBarAdmin.jsx'; // React Component
 import LandingPage from './components/landingPage/LandingPage.jsx'; // React Component
 import AdminDashboard from './components/adminDashboard/AdminDashboard.jsx'; // React Component
+import CircularIndeterminate from './components/loading/CircularIndeterminate.jsx'; // React Component
 import { getCookie, createCookie, deleteCookie } from '../utils/cookie.mjs'; // Util Component
 
 /* ================================================================== */
@@ -108,6 +109,7 @@ export default function App() {
       // send browser cookies
       createCookie('userId', newUser.id);
       createCookie('userName', newUser.displayName);
+
       // update component state
       setIsUserLoggedIn(() => true);
     }
@@ -122,24 +124,52 @@ export default function App() {
       setUserAction(() => null);
       setUserData(() => null);
     }
+
+    // log out of google auth
+    await auth.signOut();
   }, [userData]);
+
+  const componentToRender = () => {
+    if (isUserLoggedIn) {
+      return (
+        <>
+          <NavBarAdmin logOut={logOut} isUserLoggedIn={isUserLoggedIn} />
+          <AdminDashboard />
+        </>
+      );
+    }
+
+    if (isUserLoggedIn === false && getCookie('userName')) {
+      return (
+        <CircularIndeterminate />
+      );
+    }
+    return (
+      <>
+        <NavBarAdmin logInWithGoogle={logInWithGoogle} signUpWithGoogle={signUpWithGoogle} isUserLoggedIn={isUserLoggedIn} />
+        <LandingPage />
+      </>
+    );
+  };
 
   /* ======================================================== RENDER = */
   return (
     <>
-      { isUserLoggedIn
-        ? (
-          <>
-            <NavBarAdmin logOut={logOut} isUserLoggedIn={isUserLoggedIn} />
-            <AdminDashboard />
-          </>
-        )
-        : (
-          <>
-            <NavBarAdmin logInWithGoogle={logInWithGoogle} signUpWithGoogle={signUpWithGoogle} isUserLoggedIn={isUserLoggedIn} />
-            <LandingPage />
-          </>
-        )}
+      {componentToRender()}
     </>
   );
 }
+
+// { isUserLoggedIn
+//   ? (
+//     <>
+//       <NavBarAdmin logOut={logOut} isUserLoggedIn={isUserLoggedIn} />
+//       <AdminDashboard />
+//     </>
+//   )
+//   : (
+//     <>
+//       <NavBarAdmin logInWithGoogle={logInWithGoogle} signUpWithGoogle={signUpWithGoogle} isUserLoggedIn={isUserLoggedIn} />
+//       <LandingPage />
+//     </>
+//   )}

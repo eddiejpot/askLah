@@ -8,7 +8,7 @@ module.exports = {
       sessionsList.push(
         {
           user_id: userIds[i],
-          title: 'How to never snooze your alarm ever',
+          title: 'Q&A: How to never snooze your alarm ever',
           speaker: 'Dr Brown',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at leo sagittis, eleifend urna quis, lobortis turpis. Nunc mauris sapien, condimentum vitae aliquam et, lacinia eu lectus. <br> Etiam malesuada justo non elementum tempus. Fusce vel dui scelerisque dui convallis auctor.',
           date: new Date(),

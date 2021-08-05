@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  askquestion: {
+    textAlign: 'left',
+  },
 }));
 
 /* ================================================================== */
@@ -119,7 +122,7 @@ export default function QuestionCardAdmin({ question, sessionId }) {
             <Typography gutterBottom variant="subtitle2" color="text.secondary">
               {question.whoAsked}
             </Typography>
-            <Typography variant="body1">
+            <Typography variant="body1" className={classes.askquestion}>
               <Box fontWeight="fontWeightBold">
                 {question.text}
               </Box>
