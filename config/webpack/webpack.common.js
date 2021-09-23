@@ -6,7 +6,8 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      favicon: path.resolve(__dirname, '../../public/ra-logo.png'),
+      title: 'Asklah',
+      favicon: path.resolve(__dirname, '../../public/asklah-logo.png'),
     }),
   ],
   output: {
