@@ -12,10 +12,11 @@ On a more technical level, this project is/was for me to practice and learn more
 - Webpack
 - Firebase
 
-## 💻 Deployed app
+## 💻 Deployed app & documentation
 
-<!-- prettier-ignore -->
-<a href="https://thawing-retreat-54880.herokuapp.com/" target="_blank">AskLah on Heroku</a>
+<a href="https://thawing-retreat-54880.herokuapp.com/" target="_blank">AskLah deployed on Heroku</a>
+
+<a href="https://eddiejpot.notion.site/Ask-Lah-53f6fd963dea4ca0aba5ae09f7f5c041" target="_blank">See Project Documentation Here</a>
 
 ## ✋ How the app works
 
